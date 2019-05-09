@@ -1,0 +1,7 @@
+name: FormLib
+main: nl.apocalypsje.bedrock.FormLib
+version: ${project.version}
+api: ["1.0.0"]
+
+author: ApocalypsjeNL
+description: Form Library for Nukkit
