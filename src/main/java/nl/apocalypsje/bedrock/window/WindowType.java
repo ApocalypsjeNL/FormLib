@@ -5,8 +5,8 @@ import org.jetbrains.annotations.NotNull;
 public enum WindowType {
 
     MODAL("modal"),
-    SIMPLE("simple"),
-    CUSTOM("custom");
+    SIMPLE("form"),
+    CUSTOM("custom_form");
 
     private String typeName;
 
@@ -17,5 +17,12 @@ public enum WindowType {
     @NotNull
     public String getTypeName() {
         return this.typeName;
+    }
+
+    @Override
+    public String toString() {
+        return "WindowType." + this.name() + "{" +
+                "typeName='" + this.typeName + '\'' +
+                '}';
     }
 }

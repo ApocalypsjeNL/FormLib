@@ -98,13 +98,23 @@ public class ModalWindow extends Window {
 
     @Override
     @NotNull
-    protected JsonObject getJsonData() {
-        JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("type", this.getWindowType().getTypeName());
-        jsonObject.addProperty("title", this.formTitle != null ? this.formTitle : "");
-        jsonObject.addProperty("content", this.formContent != null ? this.formContent : "");
-        jsonObject.addProperty("button1", this.upperButtonText != null ? this.upperButtonText : "");
-        jsonObject.addProperty("button2", this.lowerButtonText != null ? this.lowerButtonText : "");
+    public JsonObject getJsonData() {
+        this.jsonObject.addProperty("type", this.getWindowType().getTypeName());
+        this.jsonObject.addProperty("title", this.formTitle != null ? this.formTitle : "");
+        this.jsonObject.addProperty("content", this.formContent != null ? this.formContent : "");
+        this.jsonObject.addProperty("button1", this.upperButtonText != null ? this.upperButtonText : "");
+        this.jsonObject.addProperty("button2", this.lowerButtonText != null ? this.lowerButtonText : "");
         return jsonObject;
+    }
+
+    @Override
+    public String toString() {
+        return "ModalWindow{" +
+                "formTitle='" + this.formTitle + '\'' +
+                ", formContent='" + this.formContent + '\'' +
+                ", upperButtonText='" + this.upperButtonText + '\'' +
+                ", lowerButtonText='" + this.lowerButtonText + '\'' +
+                ", jsonObject=" + this.jsonObject +
+                '}';
     }
 }

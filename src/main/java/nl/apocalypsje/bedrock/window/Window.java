@@ -9,6 +9,7 @@ import org.jetbrains.annotations.NotNull;
 public class Window {
 
     private final FormAPI formApi;
+    protected final JsonObject jsonObject = new JsonObject();
 
     private int windowId;
     private boolean cancelled;
@@ -38,15 +39,26 @@ public class Window {
     }
 
     @NotNull
-    protected JsonObject getJsonData() {
+    public JsonObject getJsonData() {
         throw new UnsupportedOperationException("getJsonData isn't implemented in the chosen Window Type");
     }
 
-    public void send(@NotNull Player player) {
+    public Window send(@NotNull Player player) {
         ModalFormRequestPacket packet = new ModalFormRequestPacket();
         packet.formId = this.getWindowId();
         packet.data = this.getJsonData().toString();
         formApi.getWindowCache().put(this.getWindowId(), this);
         player.dataPacket(packet);
+        return this;
+    }
+
+    @Override
+    public String toString() {
+        return "Window{" +
+                "jsonObject=" + this.jsonObject +
+                ", windowId=" + this.windowId +
+                ", cancelled=" + this.cancelled +
+                ", windowType=" + this.windowType +
+                '}';
     }
 }
