@@ -8,15 +8,13 @@ import org.jetbrains.annotations.NotNull;
 
 public class Window {
 
-    private final FormAPI formApi;
     protected final JsonObject jsonObject = new JsonObject();
 
     private int windowId;
     private boolean cancelled;
     private WindowType windowType;
 
-    Window(@NotNull FormAPI formApi, int windowId, @NotNull WindowType windowType) {
-        this.formApi = formApi;
+    Window(int windowId, @NotNull WindowType windowType) {
         this.windowId = windowId;
         this.windowType = windowType;
     }
@@ -47,7 +45,7 @@ public class Window {
         ModalFormRequestPacket packet = new ModalFormRequestPacket();
         packet.formId = this.getWindowId();
         packet.data = this.getJsonData().toString();
-        formApi.getWindowCache().put(this.getWindowId(), this);
+        FormAPI.getWindowCache().put(this.getWindowId(), this);
         player.dataPacket(packet);
         return this;
     }

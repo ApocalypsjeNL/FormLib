@@ -2,7 +2,6 @@ package nl.apocalypsje.bedrock.window;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import nl.apocalypsje.bedrock.FormAPI;
 import nl.apocalypsje.bedrock.element.Element;
 import nl.apocalypsje.bedrock.element.ElementButton;
 import nl.apocalypsje.bedrock.response.CustomResponse;
@@ -23,30 +22,30 @@ public class CustomWindow extends Window {
 
     private Consumer<CustomResponse> answer;
 
-    public CustomWindow(@NotNull FormAPI formApi, int windowId) {
-        super(formApi, windowId, WindowType.CUSTOM);
+    public CustomWindow(int windowId) {
+        super(windowId, WindowType.CUSTOM);
     }
 
-    public CustomWindow(@NotNull FormAPI formApi, int windowId, @Nullable String formTitle) {
-        super(formApi, windowId, WindowType.CUSTOM);
+    public CustomWindow(int windowId, @Nullable String formTitle) {
+        super(windowId, WindowType.CUSTOM);
         this.formTitle = formTitle;
     }
 
-    public CustomWindow(@NotNull FormAPI formApi, int windowId, @Nullable String formTitle, @Nullable ElementButton.ImageType formIconType, @Nullable String formIconData) {
-        super(formApi, windowId, WindowType.CUSTOM);
+    public CustomWindow(int windowId, @Nullable String formTitle, @Nullable ElementButton.ImageType formIconType, @Nullable String formIconData) {
+        super(windowId, WindowType.CUSTOM);
         this.formTitle = formTitle;
         this.formIconType = formIconType;
         this.formIconData = formIconData;
     }
 
-    public CustomWindow(@NotNull FormAPI formApi, int windowId, @Nullable String formTitle, @NotNull List<Element> elements) {
-        super(formApi, windowId, WindowType.CUSTOM);
+    public CustomWindow(int windowId, @Nullable String formTitle, @NotNull List<Element> elements) {
+        super(windowId, WindowType.CUSTOM);
         this.formTitle = formTitle;
         elements.forEach(element -> this.elements.put(element.getElementId(), element));
     }
 
-    public CustomWindow(@NotNull FormAPI formApi, int windowId, @Nullable String formTitle, @Nullable ElementButton.ImageType formIconType, @Nullable String formIconData, @NotNull List<Element> elements) {
-        super(formApi, windowId, WindowType.CUSTOM);
+    public CustomWindow(int windowId, @Nullable String formTitle, @Nullable ElementButton.ImageType formIconType, @Nullable String formIconData, @NotNull List<Element> elements) {
+        super(windowId, WindowType.CUSTOM);
         this.formTitle = formTitle;
         this.formIconType = formIconType;
         this.formIconData = formIconData;

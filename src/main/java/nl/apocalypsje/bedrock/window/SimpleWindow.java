@@ -2,7 +2,6 @@ package nl.apocalypsje.bedrock.window;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import nl.apocalypsje.bedrock.FormAPI;
 import nl.apocalypsje.bedrock.element.ElementButton;
 import nl.apocalypsje.bedrock.response.SimpleResponse;
 import org.jetbrains.annotations.NotNull;
@@ -21,23 +20,23 @@ public class SimpleWindow extends Window {
 
     private Consumer<SimpleResponse> answer;
 
-    public SimpleWindow(@NotNull FormAPI formApi, int windowId) {
-        super(formApi, windowId, WindowType.SIMPLE);
+    public SimpleWindow(int windowId) {
+        super(windowId, WindowType.SIMPLE);
     }
 
-    public SimpleWindow(@NotNull FormAPI formApi, int windowId, @Nullable String formTitle) {
-        super(formApi, windowId, WindowType.SIMPLE);
+    public SimpleWindow(int windowId, @Nullable String formTitle) {
+        super(windowId, WindowType.SIMPLE);
         this.formTitle = formTitle;
     }
 
-    public SimpleWindow(@NotNull FormAPI formApi, int windowId, @Nullable String formTitle, @Nullable String formContent) {
-        super(formApi, windowId, WindowType.SIMPLE);
+    public SimpleWindow(int windowId, @Nullable String formTitle, @Nullable String formContent) {
+        super(windowId, WindowType.SIMPLE);
         this.formTitle = formTitle;
         this.formContent = formContent;
     }
 
-    public SimpleWindow(@NotNull FormAPI formApi, int windowId, @Nullable String formTitle, @Nullable String formContent, @NotNull Map<String, ElementButton> formButtons) {
-        super(formApi, windowId, WindowType.SIMPLE);
+    public SimpleWindow(int windowId, @Nullable String formTitle, @Nullable String formContent, @NotNull Map<String, ElementButton> formButtons) {
+        super(windowId, WindowType.SIMPLE);
         this.formTitle = formTitle;
         this.formContent = formContent;
         this.formButtons.putAll(formButtons);

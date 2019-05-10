@@ -1,7 +1,6 @@
 package nl.apocalypsje.bedrock.window;
 
 import com.google.gson.JsonObject;
-import nl.apocalypsje.bedrock.FormAPI;
 import nl.apocalypsje.bedrock.response.ModalResponse;
 import nl.apocalypsje.bedrock.util.Procedure;
 import org.jetbrains.annotations.NotNull;
@@ -21,23 +20,23 @@ public class ModalWindow extends Window {
 
     private Consumer<ModalResponse> answer;
 
-    public ModalWindow(@NotNull FormAPI formApi, int windowId) {
-        super(formApi, windowId, WindowType.MODAL);
+    public ModalWindow(int windowId) {
+        super(windowId, WindowType.MODAL);
     }
 
-    public ModalWindow(@NotNull FormAPI formApi, int windowId, @Nullable String formTitle) {
-        super(formApi, windowId, WindowType.MODAL);
+    public ModalWindow(int windowId, @Nullable String formTitle) {
+        super(windowId, WindowType.MODAL);
         this.formTitle = formTitle;
     }
 
-    public ModalWindow(@NotNull FormAPI formApi, int windowId, @Nullable String formTitle, @Nullable String formContent) {
-        super(formApi, windowId, WindowType.MODAL);
+    public ModalWindow(int windowId, @Nullable String formTitle, @Nullable String formContent) {
+        super(windowId, WindowType.MODAL);
         this.formTitle = formTitle;
         this.formContent = formContent;
     }
 
-    public ModalWindow(@NotNull FormAPI formApi, int windowId, @Nullable String formTitle, @Nullable String formContent, @Nullable String upperButtonText, @Nullable String lowerButtonText) {
-        super(formApi, windowId, WindowType.MODAL);
+    public ModalWindow(int windowId, @Nullable String formTitle, @Nullable String formContent, @Nullable String upperButtonText, @Nullable String lowerButtonText) {
+        super(windowId, WindowType.MODAL);
         this.formTitle = formTitle;
         this.formContent = formContent;
         this.upperButtonText = upperButtonText;

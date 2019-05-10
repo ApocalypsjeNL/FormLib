@@ -18,81 +18,81 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class FormAPI {
 
-    private final Map<Integer, Window> windowCache = new HashMap<>();
+    private static final Map<Integer, Window> windowCache = new HashMap<>();
     //Cache starts at a really high number
-    private final AtomicInteger formIdCache = new AtomicInteger(10000);
+    private static final AtomicInteger formIdCache = new AtomicInteger(10000);
 
-    public FormAPI(@NotNull Plugin plugin) {
-        plugin.getServer().getPluginManager().registerEvents(new FormDataListener(this), plugin);
+    public static void initialize(@NotNull Plugin plugin) {
+        plugin.getServer().getPluginManager().registerEvents(new FormDataListener(), plugin);
     }
 
     @NotNull
-    public Map<Integer, Window> getWindowCache() {
-        return this.windowCache;
+    public static Map<Integer, Window> getWindowCache() {
+        return windowCache;
     }
 
     @NotNull
-    public ModalWindow modalWindow() {
-        return new ModalWindow(this, this.formIdCache.getAndIncrement());
+    public static ModalWindow modalWindow() {
+        return new ModalWindow(formIdCache.getAndIncrement());
     }
 
     @NotNull
-    public ModalWindow modalWindow(@Nullable String formTitle) {
-        return new ModalWindow(this, this.formIdCache.getAndIncrement(), formTitle);
+    public static ModalWindow modalWindow(@Nullable String formTitle) {
+        return new ModalWindow(formIdCache.getAndIncrement(), formTitle);
     }
 
     @NotNull
-    public ModalWindow modalWindow(@Nullable String formTitle, @Nullable String formContent) {
-        return new ModalWindow(this, this.formIdCache.getAndIncrement(), formTitle, formContent);
+    public static ModalWindow modalWindow(@Nullable String formTitle, @Nullable String formContent) {
+        return new ModalWindow(formIdCache.getAndIncrement(), formTitle, formContent);
     }
 
     @NotNull
-    public ModalWindow modalWindow(@Nullable String formTitle, @Nullable String formContent, @Nullable String upperButtonText, @Nullable String lowerButtonText) {
-        return new ModalWindow(this, this.formIdCache.getAndIncrement(), formTitle, formContent, upperButtonText, lowerButtonText);
+    public static ModalWindow modalWindow(@Nullable String formTitle, @Nullable String formContent, @Nullable String upperButtonText, @Nullable String lowerButtonText) {
+        return new ModalWindow(formIdCache.getAndIncrement(), formTitle, formContent, upperButtonText, lowerButtonText);
     }
 
     @NotNull
-    public SimpleWindow simpleWindow() {
-        return new SimpleWindow(this, this.formIdCache.getAndIncrement());
+    public static SimpleWindow simpleWindow() {
+        return new SimpleWindow(formIdCache.getAndIncrement());
     }
 
     @NotNull
-    public SimpleWindow simpleWindow(@Nullable String formTitle) {
-        return new SimpleWindow(this, this.formIdCache.getAndIncrement(), formTitle);
+    public static SimpleWindow simpleWindow(@Nullable String formTitle) {
+        return new SimpleWindow(formIdCache.getAndIncrement(), formTitle);
     }
 
     @NotNull
-    public SimpleWindow simpleWindow(@Nullable String formTitle, @Nullable String formContent) {
-        return new SimpleWindow(this, this.formIdCache.getAndIncrement(), formTitle, formContent);
+    public static SimpleWindow simpleWindow(@Nullable String formTitle, @Nullable String formContent) {
+        return new SimpleWindow(formIdCache.getAndIncrement(), formTitle, formContent);
     }
 
     @NotNull
-    public SimpleWindow simpleWindow(@Nullable String formTitle, @Nullable String formContent, @NotNull Map<String, ElementButton> buttons) {
-        return new SimpleWindow(this, this.formIdCache.getAndIncrement(), formTitle, formContent, buttons);
+    public static SimpleWindow simpleWindow(@Nullable String formTitle, @Nullable String formContent, @NotNull Map<String, ElementButton> buttons) {
+        return new SimpleWindow(formIdCache.getAndIncrement(), formTitle, formContent, buttons);
     }
 
     @NotNull
-    public CustomWindow customWindow() {
-        return new CustomWindow(this, this.formIdCache.getAndIncrement());
+    public static CustomWindow customWindow() {
+        return new CustomWindow(formIdCache.getAndIncrement());
     }
 
     @NotNull
-    public CustomWindow customWindow(@Nullable String formTitle) {
-        return new CustomWindow(this, this.formIdCache.getAndIncrement(), formTitle);
+    public static CustomWindow customWindow(@Nullable String formTitle) {
+        return new CustomWindow(formIdCache.getAndIncrement(), formTitle);
     }
 
     @NotNull
-    public CustomWindow customWindow(@Nullable String formTitle, @Nullable ElementButton.ImageType formIconType, @Nullable String formIconData) {
-        return new CustomWindow(this, this.formIdCache.getAndIncrement(), formTitle, formIconType, formIconData);
+    public static CustomWindow customWindow(@Nullable String formTitle, @Nullable ElementButton.ImageType formIconType, @Nullable String formIconData) {
+        return new CustomWindow(formIdCache.getAndIncrement(), formTitle, formIconType, formIconData);
     }
 
     @NotNull
-    public CustomWindow customWindow(@Nullable String formTitle, @NotNull List<Element> elements) {
-        return new CustomWindow(this, this.formIdCache.getAndIncrement(), formTitle, elements);
+    public static CustomWindow customWindow(@Nullable String formTitle, @NotNull List<Element> elements) {
+        return new CustomWindow(formIdCache.getAndIncrement(), formTitle, elements);
     }
 
     @NotNull
-    public CustomWindow customWindow(@Nullable String formTitle, @Nullable ElementButton.ImageType formIconType, @Nullable String formIconData, @NotNull List<Element> elements) {
-        return new CustomWindow(this, this.formIdCache.getAndIncrement(), formTitle, formIconType, formIconData, elements);
+    public static CustomWindow customWindow(@Nullable String formTitle, @Nullable ElementButton.ImageType formIconType, @Nullable String formIconData, @NotNull List<Element> elements) {
+        return new CustomWindow(formIdCache.getAndIncrement(), formTitle, formIconType, formIconData, elements);
     }
 }

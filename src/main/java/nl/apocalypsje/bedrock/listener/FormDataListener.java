@@ -12,17 +12,12 @@ import nl.apocalypsje.bedrock.window.CustomWindow;
 import nl.apocalypsje.bedrock.window.ModalWindow;
 import nl.apocalypsje.bedrock.window.SimpleWindow;
 import nl.apocalypsje.bedrock.window.Window;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
 public class FormDataListener implements Listener {
 
-    private FormAPI formAPI;
 
-    public FormDataListener(@NotNull FormAPI formAPI) {
-        this.formAPI = formAPI;
-    }
 
     @EventHandler
     public void onDataPacket(DataPacketReceiveEvent event) {
@@ -33,8 +28,8 @@ public class FormDataListener implements Listener {
         ModalFormResponsePacket formResponsePacket = (ModalFormResponsePacket) event.getPacket();
 
         int formId = formResponsePacket.formId;
-        if (this.formAPI.getWindowCache().containsKey(formId)) {
-            Window window = this.formAPI.getWindowCache().remove(formId);
+        if (FormAPI.getWindowCache().containsKey(formId)) {
+            Window window = FormAPI.getWindowCache().remove(formId);
             String jsonData = formResponsePacket.data.trim();
 
             if (window instanceof ModalWindow) {
