@@ -53,6 +53,12 @@ public class ElementDropdown extends Element {
     }
 
     @NotNull
+    public ElementDropdown addOptions(@NotNull List<String> options) {
+        this.dropdownOptions.addAll(options);
+        return this;
+    }
+
+    @NotNull
     public ElementDropdown addOption(@NotNull String option) {
         this.dropdownOptions.add(option);
         return this;

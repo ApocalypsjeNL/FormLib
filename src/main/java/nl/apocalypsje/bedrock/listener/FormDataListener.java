@@ -40,8 +40,10 @@ public class FormDataListener implements Listener {
             if (window instanceof ModalWindow) {
                 ModalWindow modalWindow = (ModalWindow) window;
                 if (jsonData.equals("true")) {
+                    modalWindow.triggerUpperClick();
                     modalWindow.supplyResponse(ModalResponse.UPPER_BUTTON);
                 } else {
+                    modalWindow.triggerLowerButtonClick();
                     modalWindow.supplyResponse(ModalResponse.LOWER_BUTTON);
                 }
             } else if (window instanceof SimpleWindow) {
@@ -53,6 +55,7 @@ public class FormDataListener implements Listener {
                     try {
                         int buttonId = Integer.valueOf(jsonData);
                         ElementButton button = new ArrayList<>(simpleWindow.getFormButtons().values()).get(buttonId);
+                        button.triggerCick();
                         simpleWindow.supplyResponse(SimpleResponse.BUTTON.setClickedButton(button));
                     } catch (NumberFormatException e) {
                         simpleWindow.supplyResponse(SimpleResponse.UNKNOWN);

@@ -3,6 +3,7 @@ package nl.apocalypsje.bedrock.window;
 import com.google.gson.JsonObject;
 import nl.apocalypsje.bedrock.FormAPI;
 import nl.apocalypsje.bedrock.response.ModalResponse;
+import nl.apocalypsje.bedrock.util.Procedure;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -14,6 +15,9 @@ public class ModalWindow extends Window {
     private String formContent;
     private String upperButtonText;
     private String lowerButtonText;
+
+    private Procedure upperButtonCallback;
+    private Procedure lowerButtonCallback;
 
     private Consumer<ModalResponse> answer;
 
@@ -93,6 +97,30 @@ public class ModalWindow extends Window {
     @NotNull
     public ModalWindow answer(@NotNull Consumer<ModalResponse> answer) {
         this.answer = answer;
+        return this;
+    }
+
+    public void triggerUpperClick() {
+        if(this.upperButtonCallback != null) {
+            this.upperButtonCallback.accept();
+        }
+    }
+
+    @NotNull
+    public ModalWindow onUpperButtonClick(@NotNull Procedure upperButtonCallback) {
+        this.upperButtonCallback = upperButtonCallback;
+        return this;
+    }
+
+    public void triggerLowerButtonClick() {
+        if(this.lowerButtonCallback != null) {
+            this.lowerButtonCallback.accept();
+        }
+    }
+
+    @NotNull
+    public ModalWindow onLowerButtonClick(@NotNull Procedure lowerButtonCallback) {
+        this.lowerButtonCallback = lowerButtonCallback;
         return this;
     }
 

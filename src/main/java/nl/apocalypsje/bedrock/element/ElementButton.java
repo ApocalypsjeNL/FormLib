@@ -1,6 +1,7 @@
 package nl.apocalypsje.bedrock.element;
 
 import com.google.gson.JsonObject;
+import nl.apocalypsje.bedrock.util.Procedure;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -9,6 +10,8 @@ public class ElementButton extends Element {
     private String buttonText;
     private ImageType imageType;
     private String imageData;
+
+    private Procedure answer;
 
     public ElementButton(@NotNull String elementId) {
         super(ElementType.BUTTON);
@@ -59,6 +62,18 @@ public class ElementButton extends Element {
     @NotNull
     public ElementButton imageData(@Nullable String imageData) {
         this.imageData = imageData;
+        return this;
+    }
+
+    public void triggerCick() {
+        if(this.answer != null) {
+            this.answer.accept();
+        }
+    }
+
+    @NotNull
+    public ElementButton onClick(@NotNull Procedure answer) {
+        this.answer = answer;
         return this;
     }
 

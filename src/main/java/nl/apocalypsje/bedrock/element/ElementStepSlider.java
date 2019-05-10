@@ -53,6 +53,12 @@ public class ElementStepSlider extends Element {
     }
 
     @NotNull
+    public ElementStepSlider addStepOptions(@NotNull List<String> stepOptions) {
+        this.stepOptions.addAll(stepOptions);
+        return this;
+    }
+
+    @NotNull
     public ElementStepSlider addStepOption(@NotNull String stepOption) {
         this.stepOptions.add(stepOption);
         return this;
