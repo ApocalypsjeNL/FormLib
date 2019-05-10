@@ -7,8 +7,8 @@ import org.jetbrains.annotations.Nullable;
 public class ElementSlider extends Element {
 
     private String elementText;
-    private float minimal;
-    private float maximal;
+    private float minimum;
+    private float maximum;
     private int stepCount;
     private float defaultValue;
 
@@ -19,44 +19,44 @@ public class ElementSlider extends Element {
     public ElementSlider(@Nullable String elementText) {
         super(ElementType.SLIDER);
         this.elementText = elementText;
-        this.minimal = 0f;
-        this.maximal = 100f;
+        this.minimum = 0f;
+        this.maximum = 100f;
         this.stepCount = 1;
         this.defaultValue = 0f;
     }
 
-    public ElementSlider(@Nullable String elementText, float minimal, float maximal) {
+    public ElementSlider(@Nullable String elementText, float minimum, float maximum) {
         super(ElementType.SLIDER);
-        if(minimal >= maximal) {
+        if(minimum >= maximum) {
             throw new IllegalArgumentException("Maximal value can't be smaller or equal to the minimal value");
         }
         this.elementText = elementText;
-        this.minimal = minimal;
-        this.maximal = maximal;
+        this.minimum = minimum;
+        this.maximum = maximum;
         this.stepCount = 1;
-        this.defaultValue = minimal;
+        this.defaultValue = minimum;
     }
 
-    public ElementSlider(@Nullable String elementText, float minimal, float maximal, int stepCount) {
+    public ElementSlider(@Nullable String elementText, float minimum, float maximum, int stepCount) {
         super(ElementType.SLIDER);
-        if(minimal >= maximal) {
+        if(minimum >= maximum) {
             throw new IllegalArgumentException("Maximal value can't be smaller or equal to the minimal value");
         }
         this.elementText = elementText;
-        this.minimal = minimal;
-        this.maximal = maximal;
+        this.minimum = minimum;
+        this.maximum = maximum;
         this.stepCount = stepCount;
-        this.defaultValue = minimal;
+        this.defaultValue = minimum;
     }
 
-    public ElementSlider(@Nullable String elementText, float minimal, float maximal, int stepCount, float defaultValue) {
+    public ElementSlider(@Nullable String elementText, float minimum, float maximum, int stepCount, float defaultValue) {
         super(ElementType.SLIDER);
-        if(minimal >= maximal) {
+        if(minimum >= maximum) {
             throw new IllegalArgumentException("Maximal value can't be smaller or equal to the minimal value");
         }
         this.elementText = elementText;
-        this.minimal = minimal;
-        this.maximal = maximal;
+        this.minimum = minimum;
+        this.maximum = maximum;
         this.stepCount = stepCount;
         this.defaultValue = defaultValue;
     }
@@ -72,23 +72,23 @@ public class ElementSlider extends Element {
         return this;
     }
 
-    public float getMinimal() {
-        return this.minimal;
+    public float getMinimum() {
+        return this.minimum;
     }
 
     @NotNull
-    public ElementSlider minimal(float minimal) {
-        this.minimal = minimal;
+    public ElementSlider minimum(float minimum) {
+        this.minimum = minimum;
         return this;
     }
 
-    public float getMaximal() {
-        return this.maximal;
+    public float getMaximum() {
+        return this.maximum;
     }
 
     @NotNull
-    public ElementSlider maximal(float maximal) {
-        this.maximal = maximal;
+    public ElementSlider maximum(float maximum) {
+        this.maximum = maximum;
         return this;
     }
 
@@ -117,8 +117,8 @@ public class ElementSlider extends Element {
     public JsonObject getJsonData() {
         this.jsonObject.addProperty("type", this.elementType.getElementTypeId());
         this.jsonObject.addProperty("text", this.elementText != null ? this.elementText : "");
-        this.jsonObject.addProperty("min", this.minimal);
-        this.jsonObject.addProperty("max", this.maximal);
+        this.jsonObject.addProperty("min", this.minimum);
+        this.jsonObject.addProperty("max", this.maximum);
         this.jsonObject.addProperty("step", this.stepCount);
         this.jsonObject.addProperty("defaultValue", this.defaultValue);
         return this.jsonObject;
@@ -128,8 +128,8 @@ public class ElementSlider extends Element {
     public String toString() {
         return "ElementSlider{" +
                 "elementText='" + this.elementText + '\'' +
-                ", minimal=" + this.minimal +
-                ", maximal=" + this.maximal +
+                ", minimum=" + this.minimum +
+                ", maximum=" + this.maximum +
                 ", stepCount=" + this.stepCount +
                 ", defaultValue=" + this.defaultValue +
                 ", jsonObject=" + this.jsonObject +

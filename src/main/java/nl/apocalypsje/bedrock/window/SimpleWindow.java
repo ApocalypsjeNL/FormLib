@@ -3,13 +3,12 @@ package nl.apocalypsje.bedrock.window;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import nl.apocalypsje.bedrock.element.ElementButton;
-import nl.apocalypsje.bedrock.response.SimpleResponse;
+import nl.apocalypsje.bedrock.util.Procedure;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.function.Consumer;
 
 public class SimpleWindow extends Window {
 
@@ -18,7 +17,7 @@ public class SimpleWindow extends Window {
 
     private final Map<String, ElementButton> formButtons = new LinkedHashMap<>();
 
-    private Consumer<SimpleResponse> answer;
+    private Procedure closeCallback;
 
     public SimpleWindow(int windowId) {
         super(windowId, WindowType.SIMPLE);
@@ -75,15 +74,15 @@ public class SimpleWindow extends Window {
         return this;
     }
 
-    public void supplyResponse(@NotNull SimpleResponse response) {
-        if(this.answer != null) {
-            this.answer.accept(response);
+    public void triggerClose() {
+        if(this.closeCallback != null) {
+            this.closeCallback.accept();
         }
     }
 
     @NotNull
-    public SimpleWindow answer(@NotNull Consumer<SimpleResponse> answer) {
-        this.answer = answer;
+    public SimpleWindow onClose(@NotNull Procedure closeCallback) {
+        this.closeCallback = closeCallback;
         return this;
     }
 

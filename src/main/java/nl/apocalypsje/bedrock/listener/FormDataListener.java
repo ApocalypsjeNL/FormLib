@@ -4,10 +4,11 @@ import cn.nukkit.event.EventHandler;
 import cn.nukkit.event.Listener;
 import cn.nukkit.event.server.DataPacketReceiveEvent;
 import cn.nukkit.network.protocol.ModalFormResponsePacket;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonParser;
 import nl.apocalypsje.bedrock.FormAPI;
 import nl.apocalypsje.bedrock.element.ElementButton;
-import nl.apocalypsje.bedrock.response.ModalResponse;
-import nl.apocalypsje.bedrock.response.SimpleResponse;
+import nl.apocalypsje.bedrock.response.CustomResponse;
 import nl.apocalypsje.bedrock.window.CustomWindow;
 import nl.apocalypsje.bedrock.window.ModalWindow;
 import nl.apocalypsje.bedrock.window.SimpleWindow;
@@ -17,7 +18,7 @@ import java.util.ArrayList;
 
 public class FormDataListener implements Listener {
 
-
+    private final JsonParser jsonParser = new JsonParser();
 
     @EventHandler
     public void onDataPacket(DataPacketReceiveEvent event) {
@@ -36,32 +37,31 @@ public class FormDataListener implements Listener {
                 ModalWindow modalWindow = (ModalWindow) window;
                 if (jsonData.equals("true")) {
                     modalWindow.triggerUpperClick();
-                    modalWindow.supplyResponse(ModalResponse.UPPER_BUTTON);
                 } else {
                     modalWindow.triggerLowerButtonClick();
-                    modalWindow.supplyResponse(ModalResponse.LOWER_BUTTON);
                 }
             } else if (window instanceof SimpleWindow) {
                 SimpleWindow simpleWindow = (SimpleWindow) window;
                 if (jsonData.equals("null")) {
                     simpleWindow.setCancelled(true);
-                    simpleWindow.supplyResponse(SimpleResponse.CANCELLED);
+                    simpleWindow.triggerClose();
                 } else {
                     try {
                         int buttonId = Integer.valueOf(jsonData);
                         ElementButton button = new ArrayList<>(simpleWindow.getFormButtons().values()).get(buttonId);
                         button.triggerCick();
-                        simpleWindow.supplyResponse(SimpleResponse.BUTTON.setClickedButton(button));
                     } catch (NumberFormatException e) {
-                        simpleWindow.supplyResponse(SimpleResponse.UNKNOWN);
+                        e.printStackTrace();
                     }
                 }
             } else if (window instanceof CustomWindow) {
                 CustomWindow customWindow = (CustomWindow) window;
                 if (jsonData.equals("null")) {
                     customWindow.setCancelled(true);
+                    customWindow.supplyResponse(new CustomResponse(customWindow));
                 }
-                //TODO handle the response
+                JsonArray array = this.jsonParser.parse(jsonData).getAsJsonArray();
+                customWindow.supplyResponse(new CustomResponse(customWindow, array));
             }
         }
     }

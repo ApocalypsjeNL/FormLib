@@ -103,7 +103,7 @@ public class CustomWindow extends Window {
     }
 
     @NotNull
-    public CustomWindow answer(@NotNull Consumer<CustomResponse> answer) {
+    public CustomWindow onSubmit(@NotNull Consumer<CustomResponse> answer) {
         this.answer = answer;
         return this;
     }

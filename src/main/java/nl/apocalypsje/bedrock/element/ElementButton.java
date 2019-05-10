@@ -5,7 +5,11 @@ import nl.apocalypsje.bedrock.util.Procedure;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class ElementButton extends Element {
+public class ElementButton {
+
+    private final JsonObject jsonObject = new JsonObject();
+    private String elementId;
+    private final ElementType elementType = ElementType.BUTTON;
 
     private String buttonText;
     private ImageType imageType;
@@ -14,22 +18,30 @@ public class ElementButton extends Element {
     private Procedure answer;
 
     public ElementButton(@NotNull String elementId) {
-        super(ElementType.BUTTON);
         this.elementId = elementId;
     }
 
     public ElementButton(@NotNull String elementId, @Nullable String buttonText) {
-        super(ElementType.BUTTON);
         this.elementId = elementId;
         this.buttonText = buttonText;
     }
 
     public ElementButton(@NotNull String elementId, @Nullable String buttonText, @Nullable ImageType imageType, @Nullable String imageData) {
-        super(ElementType.BUTTON);
         this.elementId = elementId;
         this.buttonText = buttonText;
         this.imageType = imageType;
         this.imageData = imageData;
+    }
+
+    @NotNull
+    public String getElementId() {
+        return this.elementId;
+    }
+
+    @NotNull
+    public ElementButton id(@NotNull String elementId) {
+        this.elementId = elementId;
+        return this;
     }
 
     @Nullable
@@ -77,7 +89,6 @@ public class ElementButton extends Element {
         return this;
     }
 
-    @Override
     @NotNull
     public JsonObject getJsonData() {
         this.jsonObject.addProperty("text", this.buttonText != null ? this.buttonText : "");

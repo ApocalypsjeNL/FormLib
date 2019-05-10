@@ -1,12 +1,9 @@
 package nl.apocalypsje.bedrock.window;
 
 import com.google.gson.JsonObject;
-import nl.apocalypsje.bedrock.response.ModalResponse;
 import nl.apocalypsje.bedrock.util.Procedure;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.function.Consumer;
 
 public class ModalWindow extends Window {
 
@@ -17,8 +14,6 @@ public class ModalWindow extends Window {
 
     private Procedure upperButtonCallback;
     private Procedure lowerButtonCallback;
-
-    private Consumer<ModalResponse> answer;
 
     public ModalWindow(int windowId) {
         super(windowId, WindowType.MODAL);
@@ -84,18 +79,6 @@ public class ModalWindow extends Window {
     @NotNull
     public ModalWindow lowerButton(@Nullable String lowerButtonText) {
         this.lowerButtonText = lowerButtonText;
-        return this;
-    }
-
-    public void supplyResponse(@NotNull ModalResponse response) {
-        if(this.answer != null) {
-            this.answer.accept(response);
-        }
-    }
-
-    @NotNull
-    public ModalWindow answer(@NotNull Consumer<ModalResponse> answer) {
-        this.answer = answer;
         return this;
     }
 
