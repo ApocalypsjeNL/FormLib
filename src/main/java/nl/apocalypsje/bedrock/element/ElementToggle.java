@@ -50,7 +50,7 @@ public class ElementToggle extends Element {
     public JsonObject getJsonData() {
         this.jsonObject.addProperty("type", this.elementType.getElementTypeId());
         this.jsonObject.addProperty("text", this.elementText != null ? this.elementText : "");
-        this.jsonObject.addProperty("defaultValue", this.defaultValue);
+        this.jsonObject.addProperty("default", this.defaultValue);
         return this.jsonObject;
     }
 
@@ -58,7 +58,7 @@ public class ElementToggle extends Element {
     public String toString() {
         return "ElementToggle{" +
                 "elementText='" + this.elementText + '\'' +
-                ", defaultValue=" + this.defaultValue +
+                ", default=" + this.defaultValue +
                 ", jsonObject=" + this.jsonObject +
                 ", elementId='" + this.elementId + '\'' +
                 ", elementType=" + this.elementType +
