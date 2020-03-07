@@ -58,7 +58,6 @@ public class FormDataListener implements Listener {
                 CustomWindow customWindow = (CustomWindow) window;
                 if (jsonData.equals("null")) {
                     customWindow.setCancelled(true);
-                    customWindow.supplyResponse(new CustomResponse(customWindow));
                 } else {
                     JsonArray array = this.jsonParser.parse(jsonData).getAsJsonArray();
                     customWindow.supplyResponse(new CustomResponse(customWindow, array));
