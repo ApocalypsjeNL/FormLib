@@ -80,7 +80,7 @@ public class ElementInput extends Element {
         return "ElementInput{" +
                 "elementText='" + this.elementText + '\'' +
                 ", placeholder='" + this.placeholder + '\'' +
-                ", defaultText='" + this.defaultText + '\'' +
+                ", default='" + this.defaultText + '\'' +
                 ", jsonObject=" + this.jsonObject +
                 ", elementId='" + this.elementId + '\'' +
                 ", elementType=" +this. elementType +
