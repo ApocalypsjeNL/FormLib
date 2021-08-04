@@ -93,10 +93,10 @@ public class ElementDropdown extends Element {
         this.jsonObject.add("options", new JsonArray());
         if(!this.dropdownOptions.isEmpty()) {
             this.dropdownOptions.forEach(this.jsonObject.getAsJsonArray("options")::add);
-            this.jsonObject.addProperty("defaultOptionIndex", this.defaultOptionIndex);
+            this.jsonObject.addProperty("default", this.defaultOptionIndex);
         } else {
             this.jsonObject.getAsJsonArray("options").add("No options provided.");
-            this.jsonObject.addProperty("defaultOptionIndex", 0);
+            this.jsonObject.addProperty("default", 0);
         }
         return this.jsonObject;
     }
@@ -105,8 +105,8 @@ public class ElementDropdown extends Element {
     public String toString() {
         return "ElementDropdown{" +
                 "elementText='" + this.elementText + '\'' +
-                ", dropdownOptions=" + this.dropdownOptions +
-                ", defaultOptionIndex=" + this.defaultOptionIndex +
+                ", options=" + this.dropdownOptions +
+                ", default=" + this.defaultOptionIndex +
                 ", jsonObject=" + this.jsonObject +
                 ", elementId='" + this.elementId + '\'' +
                 ", elementType=" + this.elementType +
